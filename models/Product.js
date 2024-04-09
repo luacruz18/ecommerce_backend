@@ -1,38 +1,50 @@
 const { Model, DataTypes } = require("sequelize");
 
-class Admins extends Model {
+class Product extends Model {
   static initModel(sequelize) {
-    Admins.init(
+    Product.init(
       {
         id: {
           type: DataTypes.BIGINT,
           primaryKey: true,
           autoIncrement: true,
         },
-        firstname: {
+        name: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        lastname: {
+        description: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        email: {
+        image: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        password: {
+        price: {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        stock: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        category: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        featured: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
       },
       {
         sequelize,
-        modelName: "Admins",
+        modelName: "product",
       }
     );
-    return Admins;
+    return Product;
   }
 }
 
-module.exports = Admins;
+module.exports = Product;

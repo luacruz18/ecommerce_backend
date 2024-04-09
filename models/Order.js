@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 
-class Orders extends Model {
+class Order extends Model {
   static initModel(sequelize) {
-    Orders.init(
+    Order.init(
       {
         id: {
           type: DataTypes.BIGINT,
@@ -12,11 +12,11 @@ class Orders extends Model {
       },
       {
         sequelize,
-        modelName: "Orders",
+        modelName: "order",
       }
     );
-    return Orders;
+    return Order;
   }
 }
 
-module.exports = Orders;
+module.exports = Order;
