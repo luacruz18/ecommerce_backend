@@ -1,6 +1,7 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 
 const User = require("./User");
+const Orders = require("./Orders");
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
@@ -15,8 +16,10 @@ const sequelize = new Sequelize(
 );
 
 User.initModel(sequelize);
+Orders.initModel(sequileze);
 
 module.exports = {
   sequelize,
   User,
+  Orders,
 };
