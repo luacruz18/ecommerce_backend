@@ -2,6 +2,7 @@ const { Sequelize, Model, DataTypes } = require("sequelize");
 
 const User = require("./User");
 const Orders = require("./Orders");
+const Categories = require("./Categories");
 const Products = require("./Products");
 const Admins = require("./Admins");
 
@@ -19,6 +20,7 @@ const sequelize = new Sequelize(
 
 User.initModel(sequelize);
 Orders.initModel(sequileze);
+Categories.initModel(sequelize);
 Products.initModel(sequelize);
 Admins.initModel(sequelize);
 
@@ -26,6 +28,7 @@ module.exports = {
   sequelize,
   User,
   Orders,
+  Categories,
   Products,
   Admins,
 };
