@@ -9,6 +9,19 @@ class Order extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
+        buyer: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        items: {
+          type: DataTypes.JSON,
+          allowNull: false,
+        },
+        status: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          defaultValue: "payment pending",
+        },
       },
       {
         sequelize,
