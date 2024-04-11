@@ -22,7 +22,7 @@ const userController = {
   store: async (req, res) => {
     try {
       const newUser = await User.create({
-        firstname: req.body.name,
+        firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
         address: req.body.address,
