@@ -21,7 +21,8 @@ const categoryController = {
     },
     store: async (req, res) => {
         try {
-            const newCategory = await Category.create({name: req.body.name});
+            const newCategory = await Category.create({name: req.body.name
+            });
             return res.json(newCategory);
         } catch (err) {
             console.log(err);
@@ -30,22 +31,27 @@ const categoryController = {
     },
     update: async (req, res) => {
         try {
-            const category = await Category.findByPk(req.params.id);
-            await category.update(req.body);
+            const category = await Category.findByPk(req.params.id); 
+            const datosActualizables = {};
+            if (req.body.name) {
+              datosActualizables.name = req.body.name;
+            }
+            await category.update(datosActualizables);
             return res.json(category);
         } catch (err) {
             console.log(err);
             return res.json({ message: "Oops! Something went wrong" });
         }
     },
+    
     destroy: async (req, res) => {
         try {
             const category = await Category.findByPk(req.params.id);
             await category.destroy();
-            return res.status(204).send();
+            return res.send();
         } catch (err) {
             console.log(err);
-            return res.status(500).json({ message: "User deleted sucessfully" });
+            return res.json({ message: "User deleted sucessfully" });
         }
     }
 };
