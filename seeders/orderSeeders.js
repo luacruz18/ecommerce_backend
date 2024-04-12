@@ -4,12 +4,16 @@ async function orderSeeder() {
   const status = [
     { productList: "{product:x, qty:123}" },
     { status: "pending" },
-    { productList: "{product:x, qty:324}" },
+    { userId: "1" },
+    { productList: "{product:x, qty:123}" },
     { status: "pending" },
-    { productList: "{product:x, qty:523}" },
+    { userId: "1" },
+    { productList: "{product:x, qty:123}" },
     { status: "pending" },
-    { productList: "{product:x, qty:124}" },
+    { userId: "1" },
+    { productList: "{product:x, qty:123}" },
     { status: "pending" },
+    { userId: "1" },
   ];
   Category.bulkCreate(order);
 }
