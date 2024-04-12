@@ -17,7 +17,7 @@ class Product extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        image: {
+        pic: {
           type: DataTypes.STRING,
           allowNull: false,
         },
@@ -29,14 +29,10 @@ class Product extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        category: {
+        featured: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        featured: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
       },
       {
         sequelize,
