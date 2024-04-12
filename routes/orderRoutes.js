@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Order } = require("../models");
+const { Order } = require("../models/index");
 const orderController = require("../controllers/orderController");
 
 router.get("/", orderController.index);
