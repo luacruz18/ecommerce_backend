@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 const Product = require("../models/index");
 async function productSeeder() {
+=======
+const { Product }= require("../models/index");
+module.exports = async () => {
+>>>>>>> Stashed changes
   const productList = [
     {
       name: "Margherita Pizza",
@@ -81,6 +86,6 @@ async function productSeeder() {
     },
   ];
 
-  await Product.bulkCreate(categoriesList);
+  await Product.bulkCreate(productList);
 };
 module.exports = productSeeder;

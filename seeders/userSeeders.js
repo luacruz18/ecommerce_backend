@@ -6,8 +6,8 @@ async function userSeeder() {
     for (let i = 0; i < 20; i++) {
         const firstname = faker.person.firstName();
         const lastname = faker.person.lastName();
-        const newUSer = {
-            fistname,
+        const newUser = {
+            firstname,
             lastname,
             email: faker.internet.email ({ firstname: firstname, lastName: lastname}),
             phoneNumber: faker.phone.number (),
@@ -15,7 +15,7 @@ async function userSeeder() {
         };
         users.push(newUser);
     }
-    await User.bulkcreate(users);
+    await user.bulkcreate(users);
     console.long("User seeder is running");
 
 }

@@ -1,7 +1,7 @@
 const Order = require("../models/index").Order;
 
 async function orderSeeder() {
-  const status = [
+  const createOrders = [
     { productList: "{product:x, qty:123}" },
     { status: "pending" },
     { userId: "1" },
@@ -15,6 +15,6 @@ async function orderSeeder() {
     { status: "pending" },
     { userId: "1" },
   ];
-  Category.bulkCreate(order);
+  Order.bulkCreate(createOrders);
 }
 module.exports = orderSeeder;
