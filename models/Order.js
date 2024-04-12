@@ -9,13 +9,10 @@ class Order extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        buyer: {
+        productList: {
           type: DataTypes.STRING,
           allowNull: false,
-        },
-        items: {
-          type: DataTypes.JSON,
-          allowNull: false,
+          defaultValue: "payment pending",
         },
         status: {
           type: DataTypes.STRING,
