@@ -1,4 +1,4 @@
-const { Category } = require("../models");
+const { Category } = require("../models/index");
 
 const categoryController = {
     index: async (req, res) => {
