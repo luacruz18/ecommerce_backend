@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
-const Product = require("../models/index");
+const { Product } = require("../models/index");
 async function productSeeder() {
-=======
-const { Product }= require("../models/index");
-module.exports = async () => {
->>>>>>> Stashed changes
   const productList = [
     {
       name: "Margherita Pizza",
