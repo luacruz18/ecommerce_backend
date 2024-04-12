@@ -1,5 +1,5 @@
 const { faker } = require("@faker-js/faker");
-const { user } = require("../models");
+const { User } = require("../models");
 
 async function userSeeder() {
     const users = [];

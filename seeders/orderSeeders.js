@@ -17,4 +17,4 @@ async function orderSeeder() {
   ];
   Category.bulkCreate(order);
 }
-module.exports = categorySeeder;
+module.exports = orderSeeder;

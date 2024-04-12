@@ -1,5 +1,5 @@
 const Product = require("../models/index");
-module.exports = async () => {
+async function productSeeder() {
   const productList = [
     {
       name: "Margherita Pizza",
@@ -83,3 +83,4 @@ module.exports = async () => {
 
   await Product.bulkCreate(categoriesList);
 };
+module.exports = productSeeder;
