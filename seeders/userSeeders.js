@@ -6,17 +6,18 @@ async function userSeeder() {
     for (let i = 0; i < 20; i++) {
         const firstname = faker.person.firstName();
         const lastname = faker.person.lastName();
-        const newUSer = {
-            fistname,
+        const newUser = {
+            firstname,
             lastname,
-            email: faker.internet.email ({ firstname: firstname, lastName: lastname}),
+            email: faker.internet.email ({ firstName: firstname, lastName: lastname}),
             phoneNumber: faker.phone.number (),
             password: "123",
+            address: 
         };
         users.push(newUser);
     }
-    await User.bulkcreate(users);
-    console.long("User seeder is running");
+    await User.bulkCreate(users);
+    console.log("User seeder is running");
 
 }
 module.exports = userSeeder;

@@ -1,4 +1,4 @@
-const Product = require("../models/index");
+const { Product } = require("../models/index");
 async function productSeeder() {
   const productList = [
     {
@@ -81,6 +81,6 @@ async function productSeeder() {
     },
   ];
 
-  await Product.bulkCreate(categoriesList);
+  await Product.bulkCreate(productList);
 };
 module.exports = productSeeder;

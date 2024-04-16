@@ -7,15 +7,15 @@ async function adminSeeder() {
         const firstname = faker.person.firstName();
         const lastname = faker.person.lastName();
         const newAdmin = {
-            fistname,
+            firstname,
             lastname,
             email: faker.internet.email ({ firstname: firstname, lastName: lastname}),
             password: "123",
         };
         admins.push(newAdmin);
     }
-    await Admin.bulkcreate(admins);
-    console.long("Admin seeder is running");
+    await Admin.bulkCreate(admins);
+    console.log("Admin seeder is running");
 
 }
 module.exports = adminSeeder;

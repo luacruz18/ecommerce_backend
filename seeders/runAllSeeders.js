@@ -11,3 +11,5 @@ orderSeeder();
 const  productSeeder = require("./productSeeders");
 productSeeder();
 
+
+console.log("All seeders were created")
