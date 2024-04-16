@@ -17,7 +17,7 @@ class Order extends Model {
         status: {
           type: DataTypes.STRING,
           allowNull: false,
-          defaultValue: "payment pending",
+          values: ["pending", "rejected", "processing", "shipped", "delivered"],
         },
       },
       {

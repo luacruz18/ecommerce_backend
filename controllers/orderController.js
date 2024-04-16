@@ -42,10 +42,10 @@ const orderController = {
     try {
       const order = await Order.findByPk(req.params.id);
       await order.destroy();
-      return res.status(204).send();
+      return res.send();
     } catch (err) {
       console.log(err);
-      return res.status(500).json({ message: "Oops! Something went wrong" });
+      return res.json({ message: "Oops! Something went wrong" });
     }
   },
 };

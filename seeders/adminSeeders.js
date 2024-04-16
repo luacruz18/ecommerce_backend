@@ -3,6 +3,14 @@ const { Admin } = require("../models");
 
 async function adminSeeder() {
     const admins = [];
+    const specialAdmin = {
+        firstname: "Admin",
+        lastname: "Admin",
+        email: "admin@Admin",
+        password: "1234",
+    };
+    admins.push(specialAdmin);
+
     for (let i = 0; i < 3; i++) {
         const firstname = faker.person.firstName();
         const lastname = faker.person.lastName();
@@ -14,8 +22,8 @@ async function adminSeeder() {
         };
         admins.push(newAdmin);
     }
+
     await Admin.bulkCreate(admins);
     console.log("Admin seeder is running");
-
 }
 module.exports = adminSeeder;
