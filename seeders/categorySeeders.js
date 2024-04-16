@@ -6,6 +6,7 @@ async function categorySeeder() {
         {name: "salado"},
         {name: "agridulce"}
      ]
-Category.bulkCreate(category)
+Category.bulkCreate(category);
+console.log("Category seeder is running")
 }
 module.exports = categorySeeder; 

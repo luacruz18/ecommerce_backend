@@ -82,5 +82,6 @@ async function productSeeder() {
   ];
 
   await Product.bulkCreate(productList);
+  console.log("Product seeder is running")
 };
 module.exports = productSeeder;

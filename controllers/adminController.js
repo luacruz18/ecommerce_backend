@@ -4,19 +4,22 @@ const adminController = {
   index: async (req, res) => {
     try {
       const admins = await Admin.findAll();
-      return res.json(admins);
+      return res.status(200).json(admins);
     } catch (err) {
-      console.log(err);
-      return res.json({ message: "Oops! Something went wrong" });
+      console.error("Error fetching administrators:", err);
+      return res.status(500).json({ message: "Error fetching administrators" });
     }
   },
   show: async (req, res) => {
     try {
       const admin = await Admin.findByPk(req.params.id);
-      return res.json(admin);
+      if (!admin) {
+        return res.status(404).json({ message: "Admin not found" });
+      }
+      return res.status(200).json(admin);
     } catch (err) {
       console.log(err);
-      return res.json({ message: "Oops! Something went wrong" });
+      return res.status(500).json({ message: "Error fetching admin" });
     }
   },
   store: async (req, res) => {
@@ -27,15 +30,19 @@ const adminController = {
         email: req.body.email,
         password: req.body.password,
       });
-      return res.json(newAdmin);
+      return res.status(201).json(newAdmin);
     } catch (err) {
       console.log(err);
-      return res.json({ message: "Oops! Something went wrong" });
+      return res.status(500).json({ message: "Error creating admin" });
     }
   },
   update: async (req, res) => {
     try {
       const admin = await Admin.findByPk(req.params.id);
+      if (!admin) {
+        return res.status(404).json({ message: "Admin not found" });
+      }
+
       const datosActualizables = {};
       if (req.body.firstname) {
         datosActualizables.firstname = req.body.firstname;
@@ -55,28 +62,33 @@ const adminController = {
       if (req.body.password) {
         datosActualizables.password = req.body.password;
       }
+
       await admin.update(datosActualizables);
-      return res.json(admin);
+      return res.status(200).json(admin);
     } catch (err) {
       console.log(err);
-      return res.json({ message: "Oops! Something went wrong" });
+      return res.status(500).json({ message: "Error updating admin" });
     }
   },
-
   destroy: async (req, res) => {
     try {
-        const admin = await Admin.findByPk(req.params.id);
-        if (admin && admin.id === 1) {
-            return res.status(403).json({ message: "This admin is not allowed to be deleted"});
-        }
-        await admin.destroy();
-        
-        return res.json({ message: "Admin deleted successfully" });
+      const admin = await Admin.findByPk(req.params.id);
+      if (!admin) {
+        return res.status(404).json({ message: "Admin not found" });
+      }
+
+      if (admin.id === 1) {
+        return res
+          .status(403)
+          .json({ message: "This admin cannot be deleted" });
+      }
+      await admin.destroy();
+      return res.status(200).json({ message: "Admin deleted successfully" });
     } catch (err) {
-        console.log(err);
-        return res.json({ message: "Oops! Something went wrong" });
+      console.log(err);
+      return res.status(500).json({ message: "Error deleting admin" });
     }
-},
+  },
 };
 
-module.exports = userController;
+module.exports = adminController;

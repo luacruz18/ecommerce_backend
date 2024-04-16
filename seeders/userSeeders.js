@@ -12,7 +12,7 @@ async function userSeeder() {
             email: faker.internet.email ({ firstName: firstname, lastName: lastname}),
             phoneNumber: faker.phone.number (),
             password: "123",
-            address: "canelones", 
+            address: faker.location.streetAddress (), 
         };
         users.push(newUser);
     }
