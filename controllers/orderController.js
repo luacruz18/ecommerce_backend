@@ -21,13 +21,39 @@ const orderController = {
   },
   store: async (req, res) => {
     try {
-      const newOrder = await Order.create(req.body);
-      return res.json(newOrder);
+      const order = req.body;
+
+      if (!order.address)
+        return res.json({ message: "Oops! Something went wrong" });
+
+      if (!order.userId)
+        return res.json({ message: "Oops! Something went wrong" });
+
+      for (const product of order.products) {
+        const productInDb = await Product.findByPk(product.id);
+        if (productInDb.stock < product.qty) {
+          return res.json({
+            message: "unsufficient stock.",
+            product: product.id,
+            stock: productInDb.stock,
+          });
+        }
+        product.price = productInDb.price;
+      }
+      order.status = "pending";
+      for (const product of order.products) {
+        const productInDb = await Product.findByPk(product.id);
+        productInDb.stock = productInDb.stock - product.qty;
+        await productInDb.save();
+      }
+      await Order.create(order);
+      return res.json({ message: "Order recieved" });
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.json({ message: "Oops! Something went wrong" });
     }
   },
+
   update: async (req, res) => {
     try {
       const order = await Order.findByPk(req.params.id);
