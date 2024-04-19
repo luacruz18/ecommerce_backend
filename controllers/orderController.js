@@ -1,4 +1,4 @@
-const { Order, Product } = require("../models/index");
+const { Order } = require("../models/index");
 
 const orderController = {
   index: async (req, res) => {
