@@ -10,5 +10,3 @@ app.use(routes);
 app.listen(port, () =>
   console.log(`Servidor corriendo en http://localhost:${port}.\n`)
 );
-
-// TODO: escribir las variables de entorno.

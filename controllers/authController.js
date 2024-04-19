@@ -29,6 +29,7 @@ const authController = {
       console.error("Error al obtener el token:", error);
       return res.json({ message: "Error del servidor." });
     }
+    return res.json({ message: "Error del servidor."})
   },
 };
 
