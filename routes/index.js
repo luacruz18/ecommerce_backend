@@ -5,8 +5,8 @@ const authRouter = require("./authRoutes");
 const adminRouter = require("./adminRoutes");
 const categoryRouter = require("./categoryRoutes");
 const orderRouter = require("./orderRoutes");
-const productRouter = require("./productRoutes")
-const isAdmin = require("../Middlewares/isAdmin")
+const productRouter = require("./productRoutes");
+const isAdmin = require("../Middlewares/isAdmin");
 const { expressjwt: checkJwt } = require("express-jwt");
 
 router.use("/token", authRouter);

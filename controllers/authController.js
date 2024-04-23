@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { User, Admin } = require("../models");
+const isAdmin = require("../Middlewares/isAdmin");
 
 const authController = {
   getToken: async (req, res) => {
@@ -15,6 +16,7 @@ const authController = {
         );
         return res.json({ token });
       }
+
       if (!user) {
         const admin = await Admin.findOne({ where: { email } });
         if (admin && password === admin.password) {
@@ -27,10 +29,22 @@ const authController = {
       }
     } catch (error) {
       console.error("Error al obtener el token:", error);
-      return res.json({ message: "Error del servidor." });
+      return res.status(500).json({ message: "Error del servidor." });
     }
-    return res.json({ message: "Error del servidor."})
+    return res.status(401).json({ message: "Credenciales incorrectas." });
   },
+
+  
+  adminRoute: async (req, res) => {
+    try {
+      isAdmin(req, res, () => {
+        res.json({ message: "Acceso concedido como administrador." });
+      });
+    } catch (error) {
+      console.error("Error en la ruta de administrador:", error);
+      return res.status(500).json({ message: "Error del servidor." });
+    }
+  }
 };
 
 module.exports = authController;

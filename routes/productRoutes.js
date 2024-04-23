@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { Product } = require("../models/index");
 const productController = require("../controllers/productController");
+const isAdmin = require("../Middlewares/isAdmin")
 
 
 router.get("/", productController.index);
 router.get("/:id", productController.show);
-router.post("/", productController.store);
-router.patch("/:id", productController.update);
-router.delete("/:id", productController.destroy);
+router.post("/", isAdmin, productController.store);
+router.patch("/:id", isAdmin, productController.update);
+router.delete("/:id", isAdmin, productController.destroy);
 
 module.exports = router;
