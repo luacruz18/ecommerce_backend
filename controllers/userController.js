@@ -1,4 +1,5 @@
 const { User } = require("../models/index");
+const bcrypt = require("bcryptjs");
 
 const userController = {
   index: async (req, res) => {
@@ -24,13 +25,14 @@ const userController = {
   },
   store: async (req, res) => {
     try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newUser = await User.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
         address: req.body.address,
         phoneNumber: req.body.phoneNumber,
-        password: req.body.password,
+        password: hashedPassword,
       });
       return res.status(201).json(newUser);
     } catch (err) {
@@ -40,6 +42,7 @@ const userController = {
   },
   update: async (req, res) => {
     try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const user = await User.findByPk(req.params.id);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -50,7 +53,7 @@ const userController = {
         email: req.body.email,
         address: req.body.address,
         phoneNumber: req.body.phoneNumber,
-        password: req.body.password,
+        password: hashedPassword,
       };
       await user.update(datosActualizables);
       return res.json(user);

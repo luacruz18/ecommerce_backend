@@ -8,7 +8,7 @@ const adminSeeder = require("./adminSeeders");
 adminSeeder();
 const orderSeeder = require("./orderSeeders");
 orderSeeder();
-const  productSeeder = require("./productSeeders");
+const productSeeder = require("./productSeeders");
 productSeeder();
 
 

@@ -24,11 +24,12 @@ const adminController = {
   },
   store: async (req, res) => {
     try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newAdmin = await Admin.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        password: req.body.password,
+        password: hashedPassword,
       });
       return res.status(201).json(newAdmin);
     } catch (err) {
@@ -38,6 +39,7 @@ const adminController = {
   },
   update: async (req, res) => {
     try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const admin = await Admin.findByPk(req.params.id);
       if (!admin) {
         return res.status(404).json({ message: "Admin not found" });
@@ -59,8 +61,8 @@ const adminController = {
       if (req.body.phoneNumber) {
         datosActualizables.phoneNumber = req.body.phoneNumber;
       }
-      if (req.body.password) {
-        datosActualizables.password = req.body.password;
+      if (hashedPassword) {
+        datosActualizables.password = hashedPassword;
       }
 
       await admin.update(datosActualizables);
