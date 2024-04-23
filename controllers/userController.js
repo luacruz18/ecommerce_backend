@@ -52,7 +52,7 @@ const userController = {
         return res.status(403).json({ message: "Unauthorized" });
       }
 
-      const datosActualizables = {
+      const updatableData = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
@@ -60,7 +60,7 @@ const userController = {
         phoneNumber: req.body.phoneNumber,
         password: hashedPassword,
       };
-      await user.update(datosActualizables);
+      await user.update(updatableData);
       return res.json(user);
     } catch (err) {
       console.error(err);

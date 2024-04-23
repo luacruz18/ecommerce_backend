@@ -45,27 +45,27 @@ const adminController = {
         return res.status(404).json({ message: "Admin not found" });
       }
 
-      const datosActualizables = {};
+      const updatableData = {};
       if (req.body.firstname) {
-        datosActualizables.firstname = req.body.firstname;
+        updatableData.firstname = req.body.firstname;
       }
       if (req.body.lastname) {
-        datosActualizables.lastname = req.body.lastname;
+        updatableData.lastname = req.body.lastname;
       }
       if (req.body.email) {
-        datosActualizables.email = req.body.email;
+        updatableData.email = req.body.email;
       }
       if (req.body.address) {
-        datosActualizables.address = req.body.address;
+        updatableData.address = req.body.address;
       }
       if (req.body.phoneNumber) {
-        datosActualizables.phoneNumber = req.body.phoneNumber;
+        updatableData.phoneNumber = req.body.phoneNumber;
       }
       if (hashedPassword) {
-        datosActualizables.password = hashedPassword;
+        updatableData.password = hashedPassword;
       }
 
-      await admin.update(datosActualizables);
+      await admin.update(updatableData);
       return res.status(200).json(admin);
     } catch (err) {
       console.log(err);

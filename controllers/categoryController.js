@@ -31,11 +31,11 @@ const categoryController = {
   update: async (req, res) => {
     try {
       const category = await Category.findByPk(req.params.id);
-      const datosActualizables = {};
+      const updatableData = {};
       if (req.body.name) {
-        datosActualizables.name = req.body.name;
+        updatableData.name = req.body.name;
       }
-      await category.update(datosActualizables);
+      await category.update(updatableData);
       return res.json(category);
     } catch (err) {
       console.log(err);

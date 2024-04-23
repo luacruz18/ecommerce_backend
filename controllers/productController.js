@@ -39,29 +39,29 @@ const productController = {
   update: async (req, res) => {
     try {
       const product = await Product.findByPk(req.params.id);
-      const datosActualizables = {};
+      const updatableData = {};
       if (req.body.name) {
-        datosActualizables.name = req.body.name;
+        updatableData.name = req.body.name;
       }
       if (req.body.description) {
-        datosActualizables.description = req.body.description;
+        updatableData.description = req.body.description;
       }
       if (req.body.image) {
-        datosActualizables.image = req.body.image;
+        updatableData.image = req.body.image;
       }
       if (req.body.price) {
-        datosActualizables.price = req.body.price;
+        updatableData.price = req.body.price;
       }
       if (req.body.stock) {
-        datosActualizables.stock = req.body.stock;
+        updatableData.stock = req.body.stock;
       }
       if (req.body.category) {
-        datosActualizables.category = req.body.category;
+        updatableData.category = req.body.category;
       }
       if (req.body.featured) {
-        datosActualizables.featured = req.body.featured;
+        updatableData.featured = req.body.featured;
       }
-      await Product.update(datosActualizables);
+      await Product.update(updatableData);
       return res.json(product);
     } catch (err) {
       console.log(err);
@@ -73,10 +73,10 @@ const productController = {
     try {
       const product = await Product.findByPk(req.params.id);
       await product.destroy();
-      return res.json({ message: "Product deleted successfully" });
+      return res.json({ message: "Product deleted successfully." });
     } catch (err) {
       console.log(err);
-      return res.json({ message: "Oops! Something went wrong" });
+      return res.json({ message: "Error deleting product." });
     }
   },
 };

@@ -28,21 +28,21 @@ const authController = {
         }
       }
     } catch (error) {
-      console.error("Error al obtener el token:", error);
-      return res.status(500).json({ message: "Error del servidor." });
+      console.error("Error while obtaining the token:", error);
+      return res.status(500).json({ message: "Server error." });
     }
-    return res.status(401).json({ message: "Credenciales incorrectas." });
+    return res.status(401).json({ message: "Incorrect credentials." });
   },
 
   
   adminRoute: async (req, res) => {
     try {
       isAdmin(req, res, () => {
-        res.json({ message: "Acceso concedido como administrador." });
+        res.json({ message: "Access granted as administrator." });
       });
     } catch (error) {
-      console.error("Error en la ruta de administrador:", error);
-      return res.status(500).json({ message: "Error del servidor." });
+      console.error("Error in the administrator route:", error);
+      return res.status(500).json({ message: "Server error." });
     }
   }
 };
