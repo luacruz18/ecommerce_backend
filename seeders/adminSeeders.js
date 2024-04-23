@@ -3,30 +3,29 @@ const { Admin } = require("../models");
 const bcrypt = require("bcryptjs");
 
 async function adminSeeder() {
-    const password = "123"
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const admins = [];
-    const specialAdmin = {
-        firstname: "Admin",
-        lastname: "Admin",
-        email: "admin@Admin",
-        password: "1234",
+  const hashedPassword = await bcrypt.hash("123", 10);
+  const admins = [];
+  const specialAdmin = {
+    firstname: "Admin",
+    lastname: "Admin",
+    email: "admin@Admin",
+    password: "1234",
+  };
+  admins.push(specialAdmin);
+
+  for (let i = 0; i < 3; i++) {
+    const firstname = faker.person.firstName();
+    const lastname = faker.person.lastName();
+    const newAdmin = {
+      firstname,
+      lastname,
+      email: faker.internet.email({ firstname: firstname, lastName: lastname }),
+      password: hashedPassword,
     };
-    admins.push(specialAdmin);
+    admins.push(newAdmin);
+  }
 
-    for (let i = 0; i < 3; i++) {
-        const firstname = faker.person.firstName();
-        const lastname = faker.person.lastName();
-        const newAdmin = {
-            firstname,
-            lastname,
-            email: faker.internet.email ({ firstname: firstname, lastName: lastname}),
-            password: hashedPassword,
-        };
-        admins.push(newAdmin);
-    }
-
-    await Admin.bulkCreate(admins);
-    console.log("Admin seeder is running");
+  await Admin.bulkCreate(admins);
+  console.log("Admin seeder is running");
 }
 module.exports = adminSeeder;
