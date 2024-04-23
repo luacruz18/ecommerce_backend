@@ -47,11 +47,9 @@ const userController = {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-      const tokenUserId = req.user.id;
-      if (tokenUserId !== req.params.id) {
+      if (req.auth.sub !== req.params.id) {
         return res.status(403).json({ message: "Unauthorized" });
       }
-
       const updatableData = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
