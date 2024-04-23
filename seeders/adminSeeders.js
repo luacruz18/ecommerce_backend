@@ -4,12 +4,13 @@ const bcrypt = require("bcryptjs");
 
 async function adminSeeder() {
   const hashedPassword = await bcrypt.hash("123", 10);
+  const specialHashedPassword = await bcrypt.hash("1234", 10);
   const admins = [];
   const specialAdmin = {
     firstname: "Admin",
     lastname: "Admin",
     email: "admin@Admin",
-    password: "1234",
+    password: specialHashedPassword,
   };
   admins.push(specialAdmin);
 
