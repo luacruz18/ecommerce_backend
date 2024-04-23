@@ -1,7 +1,10 @@
 const { faker } = require("@faker-js/faker");
 const { Admin } = require("../models");
+const bcrypt = require("bcryptjs");
 
 async function adminSeeder() {
+    const password = "123"
+    const hashedPassword = await bcrypt.hash(password, 10);
     const admins = [];
     const specialAdmin = {
         firstname: "Admin",
@@ -18,7 +21,7 @@ async function adminSeeder() {
             firstname,
             lastname,
             email: faker.internet.email ({ firstname: firstname, lastName: lastname}),
-            password: "123",
+            password: hashedPassword,
         };
         admins.push(newAdmin);
     }

@@ -30,7 +30,7 @@ const orderController = {
         return res.json({ message: "Oops! Something went wrong" });
 
       for (const product of order.products) {
-        const productInDb = await Product.findByPk(product.id);
+        const productInDb = await product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
           return res.json({
             message: "unsufficient stock.",
@@ -42,7 +42,7 @@ const orderController = {
       }
       order.status = "pending";
       for (const product of order.products) {
-        const productInDb = await Product.findByPk(product.id);
+        const productInDb = await product.findByPk(product.id);
         productInDb.stock = productInDb.stock - product.qty;
         await productInDb.save();
       }
