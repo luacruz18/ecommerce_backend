@@ -3,6 +3,7 @@ const router = express.Router();
 const { Category } = require("../models/index");
 const categoryController = require("../controllers/categoryController");
 const isAdmin = require("../middlewares/isAdmin");
+const { expressjwt: checkJwt } = require("express-jwt");
 
 router.get("/", categoryController.index);
 router.get("/:id", categoryController.show);

@@ -50,7 +50,7 @@ const categoryController = {
         return res.status(404).json({ message: "Category not found" });
       }
       await category.destroy();
-      return res.send();
+      return res.json({ message: "Category deleted successfully." });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: "Error deleting category" });

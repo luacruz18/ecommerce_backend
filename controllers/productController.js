@@ -24,7 +24,7 @@ const productController = {
       const newProduct = await Product.create({
         name: req.body.name,
         description: req.body.description,
-        image: req.body.image,
+        pic: req.body.pic,
         price: req.body.price,
         stock: req.body.stock,
         category: req.body.category,
@@ -39,6 +39,9 @@ const productController = {
   update: async (req, res) => {
     try {
       const product = await Product.findByPk(req.params.id);
+      if (!product) {
+        return res.status(404).json({ message: "Product not found." });
+      }
       const updatableData = {};
       if (req.body.name) {
         updatableData.name = req.body.name;
@@ -61,13 +64,14 @@ const productController = {
       if (req.body.featured) {
         updatableData.featured = req.body.featured;
       }
-      await Product.update(updatableData);
+      await product.update(updatableData);
       return res.json(product);
     } catch (err) {
       console.log(err);
-      return res.json({ message: "Oops! Something went wrong" });
+      return res.status(500).json({ message: "Error updating product." });
     }
   },
+  
 
   destroy: async (req, res) => {
     try {
