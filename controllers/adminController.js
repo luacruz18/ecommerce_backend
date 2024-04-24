@@ -14,12 +14,12 @@ const adminController = {
     try {
       const admin = await Admin.findByPk(req.params.id);
       if (!admin) {
-        return res.status(404).json({ message: "Admin not found" });
+        return res.status(404).json({ message: "Administrator not found" });
       }
       return res.status(200).json(admin);
     } catch (err) {
       console.log(err);
-      return res.status(500).json({ message: "Error fetching admin" });
+      return res.status(500).json({ message: "Error fetching administrator" });
     }
   },
   store: async (req, res) => {
@@ -34,7 +34,7 @@ const adminController = {
       return res.status(201).json(newAdmin);
     } catch (err) {
       console.log(err);
-      return res.status(500).json({ message: "Error creating admin" });
+      return res.status(500).json({ message: "Error creating administrator" });
     }
   },
   update: async (req, res) => {
@@ -42,7 +42,7 @@ const adminController = {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const admin = await Admin.findByPk(req.params.id);
       if (!admin) {
-        return res.status(404).json({ message: "Admin not found" });
+        return res.status(404).json({ message: "Administrator not found" });
       }
 
       const updatableData = {};
@@ -69,23 +69,23 @@ const adminController = {
       return res.status(200).json(admin);
     } catch (err) {
       console.log(err);
-      return res.status(500).json({ message: "Error updating admin" });
+      return res.status(500).json({ message: "Error updating administrator" });
     }
   },
   destroy: async (req, res) => {
     try {
       const admin = await Admin.findByPk(req.params.id);
       if (!admin) {
-        return res.status(404).json({ message: "Admin not found" });
+        return res.status(404).json({ message: "Administrator not found" });
       }
 
       if (admin.id === 1) {
         return res
           .status(403)
-          .json({ message: "This admin cannot be deleted" });
+          .json({ message: "This administrator cannot be deleted" });
       }
       await admin.destroy();
-      return res.status(200).json({ message: "Admin deleted successfully" });
+      return res.status(200).json({ message: "Administrator deleted successfully" });
     } catch (err) {
       console.log(err);
       return res.status(500).json({ message: "Error deleting admin" });
