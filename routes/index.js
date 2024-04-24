@@ -10,11 +10,7 @@ const isAdmin = require("../middlewares/isAdmin");
 const { expressjwt: checkJwt } = require("express-jwt");
 
 router.use("/token", authRouter);
-router.use(
-  "/user",
-  checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"] }),
-  userRoutes
-);
+router.use("/user", userRoutes);
 router.use(
   "/admin",
   checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"] }),
