@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const userController = {
   index: async (req, res) => {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({include: "user" });
       return res.json(users);
     } catch (err) {
       console.error(err);
@@ -67,15 +67,20 @@ const userController = {
   },
   destroy: async (req, res) => {
     try {
-      const user = await User.findByPk(req.params.id);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
+      const userId = req.params.id;
+      if (userId !== req.user.id) {
+        return res.status(403).json({ message: "You don't have permission to delete this user." });
       }
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found." });
+      }
+  
       await user.destroy();
-      return res.json({ message: "User deleted successfully" });
+      return res.json({ message: "User deleted successfully." });
     } catch (err) {
       console.error(err);
-      return res.status(500).json({ message: "Oops! Something went wrong" });
+      return res.status(500).json({ message: "Oops! Something went wrong." });
     }
   },
 };
