@@ -69,7 +69,7 @@ const userController = {
     try {
       const userId = req.params.id;
       if (userId !== req.user.id) {
-        return res.status(403).json({ message: "You don't have permission to delete this user." });
+        return res.status(403).json({ message: "You are not authorized to delete this user." });
       }
       const user = await User.findByPk(userId);
       if (!user) {

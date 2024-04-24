@@ -33,7 +33,7 @@ const orderController = {
         const productInDb = await product.findByPk(product.id);
         if (productInDb.stock < product.qty) {
           return res.json({
-            message: "unsufficient stock.",
+            message: "Unsufficient stock.",
             product: product.id,
             stock: productInDb.stock,
           });

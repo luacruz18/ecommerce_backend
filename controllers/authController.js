@@ -30,7 +30,7 @@ const authController = {
       console.error("Error while obtaining the token:", error);
       return res.status(500).json({ message: "Server error." });
     }
-    return res.status(401).json({ message: "Incorrect credentials." });
+    return res.status(401).json({ message: "Incorrect email or password." });
   },
 
 };
