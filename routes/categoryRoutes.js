@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Category } = require("../models/index");
 const categoryController = require("../controllers/categoryController");
-const isAdmin = require("../Middlewares/isAdmin")
-
+const isAdmin = require("../middlewares/isAdmin");
 
 router.get("/", categoryController.index);
 router.get("/:id", categoryController.show);

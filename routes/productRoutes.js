@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Product } = require("../models/index");
 const productController = require("../controllers/productController");
-const isAdmin = require("../Middlewares/isAdmin")
-
+const isAdmin = require("../middlewares/isAdmin");
 
 router.get("/", productController.index);
 router.get("/:id", productController.show);

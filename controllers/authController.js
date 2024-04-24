@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { User, Admin } = require("../models");
-const isAdmin = require("../Middlewares/isAdmin");
+const isAdmin = require("../middlewares/isAdmin");
 
 const authController = {
   getToken: async (req, res) => {
@@ -34,7 +34,6 @@ const authController = {
     return res.status(401).json({ message: "Incorrect credentials." });
   },
 
-  
   // adminRoute: async (req, res) => {
   //   try {
   //     isAdmin(req, res, () => {
