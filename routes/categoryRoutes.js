@@ -6,8 +6,9 @@ const isAdmin = require("../middlewares/isAdmin");
 
 router.get("/", categoryController.index);
 router.get("/:id", categoryController.show);
-router.post("/", isAdmin, categoryController.store);
-router.patch("/:id", isAdmin, categoryController.update);
-router.delete("/:id", isAdmin, categoryController.destroy);
+
+router.post("/", checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"]}), isAdmin, categoryController.store);
+router.patch("/:id", checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"]}), isAdmin, categoryController.update);
+router.delete("/:id", checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"]}), isAdmin, categoryController.destroy);
 
 module.exports = router;

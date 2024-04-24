@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models/index");
 const userController = require("../controllers/userController");
 
 router.post("/", userController.store);
+
+router.use(
+  checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"] })
+);
 
 router.get("/", userController.index);
 router.get("/:id", userController.show);
