@@ -3,7 +3,7 @@ const { Order } = require("../models/index");
 const orderController = {
   index: async (req, res) => {
     try {
-      const orders = await Order.findAll(include: "user");
+      const orders = await Order.findAll({ include: "user" });
       return res.json(orders);
     } catch (err) {
       console.log(err);
