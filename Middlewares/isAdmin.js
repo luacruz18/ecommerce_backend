@@ -2,7 +2,7 @@ const isAdmin = (req, res, next) => {
   if (req.auth.role === "admin") {
     next(); 
   } else {
-    res.status(403).send("No autorizado");
+    res.status(403).send("Not authorized");
   }
 };
 
