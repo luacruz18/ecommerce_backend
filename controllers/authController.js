@@ -12,7 +12,7 @@ const authController = {
         const token = jwt.sign(
           { sub: user.id, role: "User" },
           process.env.SECRET_TOKEN,
-          { expiresIn: "30m" }
+          { expiresIn: "30m" } // se lo agregamos porque lo vimos en documentación sobre tokens. 
         );
         return res.json({ token });
       }
