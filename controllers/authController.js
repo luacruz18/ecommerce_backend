@@ -11,7 +11,8 @@ const authController = {
       if (user && password === user.password) {
         const token = jwt.sign(
           { sub: user.id, role: "User" },
-          process.env.SECRET_TOKEN
+          process.env.SECRET_TOKEN,
+          { expiresIn: "30m" }
         );
         return res.json({ token });
       }
@@ -21,7 +22,8 @@ const authController = {
         if (admin && password === admin.password) {
           const token = jwt.sign(
             { sub: admin.id, role: "Admin" },
-            process.env.SECRET_TOKEN
+            process.env.SECRET_TOKEN,
+            { expiresIn: "30m" } 
           );
           return res.json({ token });
         }
