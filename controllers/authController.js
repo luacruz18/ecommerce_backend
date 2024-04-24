@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const { User, Admin } = require("../models");
-const isAdmin = require("../middlewares/isAdmin");
 
 const authController = {
   getToken: async (req, res) => {
@@ -34,16 +33,6 @@ const authController = {
     return res.status(401).json({ message: "Incorrect email or password." });
   },
 
-  // adminRoute: async (req, res) => {
-  //   try {
-  //     isAdmin(req, res, () => {
-  //       res.json({ message: "Access granted as administrator." });
-  //     });
-  //   } catch (error) {
-  //     console.error("Error in the administrator route:", error);
-  //     return res.status(500).json({ message: "Server error." });
-  //   }
-  // }
 };
 
 module.exports = authController;
