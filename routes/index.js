@@ -19,7 +19,7 @@ router.use(
   adminRouter
 );
 router.use("/categories", categoryRouter);
-router.use("/orders", orderRouter);
+router.use("/orders",  checkJwt({ secret: process.env.SECRET_TOKEN, algorithms: ["HS256"] }), orderRouter);
 router.use("/products", productRouter);
 
 module.exports = router;
