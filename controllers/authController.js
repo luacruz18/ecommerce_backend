@@ -7,6 +7,7 @@ const authController = {
 
     try {
       const user = await User.findOne({ where: { email } });
+      const {id, firstname, lastname, address} = user
 
       if (user && password === user.password) {
         const token = jwt.sign(
@@ -14,8 +15,9 @@ const authController = {
           process.env.SECRET_TOKEN,
           { expiresIn: "30m" } // se lo agregamos porque lo vimos en documentación sobre tokens. 
         );
-        return res.json({ token });
+        return res.json({ id, firstname, lastname, address, email, token });
       }
+    
 
       if (!user) {
         const admin = await Admin.findOne({ where: { email } });
